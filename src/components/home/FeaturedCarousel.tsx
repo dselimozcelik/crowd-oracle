@@ -12,42 +12,42 @@ const demoEvents = [
         title: 'Will Bitcoin break $150k by Q4?',
         yesPct: 75,
         voteCount: 15420,
-        category: { name: 'Crypto', color: 'text-amber-400' },
+        category: { name: 'Crypto', color: 'text-amber-600' },
     },
     {
         id: 'demo-2',
         title: 'SpaceX Starship orbital success?',
         yesPct: 45,
         voteCount: 8932,
-        category: { name: 'Tech', color: 'text-blue-400' },
+        category: { name: 'Tech', color: 'text-blue-600' },
     },
     {
         id: 'demo-3',
         title: 'US Interest Rates < 4% in 2026?',
         yesPct: 62,
         voteCount: 22150,
-        category: { name: 'Macro', color: 'text-emerald-400' },
+        category: { name: 'Macro', color: 'text-emerald-600' },
     },
     {
         id: 'demo-4',
         title: 'Solana to flip Ethereum market cap?',
         yesPct: 28,
         voteCount: 4500,
-        category: { name: 'Crypto', color: 'text-violet-400' },
+        category: { name: 'Crypto', color: 'text-violet-600' },
     },
     {
         id: 'demo-5',
         title: 'GPT-6 release before July 2026?',
         yesPct: 81,
         voteCount: 12600,
-        category: { name: 'AI', color: 'text-pink-400' },
+        category: { name: 'AI', color: 'text-pink-600' },
     },
     {
         id: 'demo-6',
         title: 'Apple VR headset sales < 1M units?',
         yesPct: 65,
         voteCount: 5200,
-        category: { name: 'Tech', color: 'text-blue-400' },
+        category: { name: 'Tech', color: 'text-blue-600' },
     },
 ];
 
@@ -96,9 +96,10 @@ export function FeaturedCarousel() {
     };
 
     return (
-        <section className="relative w-full bg-[#020617] py-20 border-t border-emerald-500/50 shadow-[0_-1px_15px_rgba(16,185,129,0.2)] overflow-hidden group/section">
-            {/* Background Effects */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-900/40 to-[#020617] pointer-events-none" />
+        <section className="relative w-full section-warm py-20 border-t border-ink-200 overflow-hidden group/section">
+            {/* Decorative blur blob */}
+            <div className="blur-blob blur-blob-signal w-[400px] h-[400px] -top-40 -right-20" />
+            <div className="blur-blob blur-blob-warm w-[300px] h-[300px] bottom-0 left-1/4" />
 
             <div className="container mx-auto px-4 relative z-10 mb-12">
                 {/* Header */}
@@ -106,13 +107,13 @@ export function FeaturedCarousel() {
                     <div>
                         <div className="flex items-center gap-2 mb-2">
                             <ActivityIcon />
-                            <span className="text-emerald-400 font-mono text-xs tracking-[0.2em] uppercase font-bold">Live Markets</span>
+                            <span className="text-signal font-mono text-xs tracking-[0.2em] uppercase font-bold">Live Markets</span>
                         </div>
-                        <h2 className="text-3xl md:text-4xl font-display font-semibold text-white tracking-tight">
-                            Trending <span className="text-emerald-400">Predictions</span>
+                        <h2 className="text-3xl md:text-4xl font-display font-semibold text-ink-950 tracking-tight">
+                            Trending <span className="text-signal">Predictions</span>
                         </h2>
                     </div>
-                    <button className="text-emerald-400 hover:text-emerald-300 font-medium text-sm flex items-center gap-1 transition-colors group">
+                    <button className="text-signal hover:text-signal/80 font-medium text-sm flex items-center gap-1 transition-colors group">
                         View all markets
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </button>
@@ -128,7 +129,7 @@ export function FeaturedCarousel() {
                 {/* Navigation Buttons (Visible on Hover) */}
                 <button
                     onClick={handlePrev}
-                    className="absolute left-8 z-30 p-3 rounded-full bg-slate-900/40 backdrop-blur-md border border-white/10 text-emerald-400 opacity-0 group-hover/section:opacity-100 transition-all hover:bg-emerald-500 hover:text-white hover:scale-110 -translate-x-4 group-hover/section:translate-x-0"
+                    className="absolute left-8 z-30 p-3 rounded-full bg-white/80 backdrop-blur-md border border-ink-200 text-ink-600 opacity-0 group-hover/section:opacity-100 transition-all hover:bg-signal hover:text-white hover:border-signal hover:scale-110 -translate-x-4 group-hover/section:translate-x-0 shadow-organic"
                     aria-label="Previous slide"
                 >
                     <ChevronLeft className="w-6 h-6" />
@@ -136,15 +137,15 @@ export function FeaturedCarousel() {
 
                 <button
                     onClick={handleNext}
-                    className="absolute right-8 z-30 p-3 rounded-full bg-slate-900/40 backdrop-blur-md border border-white/10 text-emerald-400 opacity-0 group-hover/section:opacity-100 transition-all hover:bg-emerald-500 hover:text-white hover:scale-110 translate-x-4 group-hover/section:translate-x-0"
+                    className="absolute right-8 z-30 p-3 rounded-full bg-white/80 backdrop-blur-md border border-ink-200 text-ink-600 opacity-0 group-hover/section:opacity-100 transition-all hover:bg-signal hover:text-white hover:border-signal hover:scale-110 translate-x-4 group-hover/section:translate-x-0 shadow-organic"
                     aria-label="Next slide"
                 >
                     <ChevronRight className="w-6 h-6" />
                 </button>
 
                 {/* Fade Gradients */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#020617] via-[#020617]/80 to-transparent z-20 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#020617] via-[#020617]/80 to-transparent z-20 pointer-events-none" />
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F5F4F2] via-[#F5F4F2]/80 to-transparent z-20 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#F5F4F2] via-[#F5F4F2]/80 to-transparent z-20 pointer-events-none" />
 
                 {/* Animated Track */}
                 <motion.div
@@ -172,8 +173,9 @@ export function FeaturedCarousel() {
 function ActivityIcon() {
     return (
         <div className="relative flex items-center justify-center w-4 h-4">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-signal opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-signal"></span>
         </div>
     )
 }
+

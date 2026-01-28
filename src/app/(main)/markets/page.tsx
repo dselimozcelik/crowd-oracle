@@ -1,12 +1,19 @@
 'use client';
 
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { MarketTicker } from '@/components/markets/MarketTicker';
 import { PredictionMarketCard } from '@/components/markets/PredictionMarketCard';
+import { cn } from '@/lib/utils';
+import { springs, fadeUpStagger, staggerContainer, viewportOnce } from '@/lib/animations';
 
-// Rich Mock Data (12 Items)
+// Rich Mock Data (12 Items) - sorted by votes for hero selection
 const MOCK_MARKETS = [
+    // High activity (will be featured)
+    { id: 7, title: "Fed Interest Rate Cut in March?", category: "Economy", votes: 32400, chance: 55, ends: "Mar 20, 2025", isFeatured: true },
+    { id: 10, title: "GPT-5 Release Date before June 2025?", category: "Tech", votes: 21050, chance: 35, ends: "Jun 30, 2025", isFeatured: true },
+
     // CRYPTO
     { id: 1, title: "Will Bitcoin hit $100k before Q1 2026?", category: "Crypto", votes: 15420, chance: 65, ends: "Dec 31, 2025" },
     { id: 2, title: "Ethereum ETF Approval by SEC in May?", category: "Crypto", votes: 8100, chance: 32, ends: "May 15, 2025" },
@@ -18,12 +25,10 @@ const MOCK_MARKETS = [
     { id: 6, title: "Max Verstappen to win Monaco GP?", category: "Sports", votes: 3200, chance: 75, ends: "May 26, 2025" },
 
     // ECONOMY
-    { id: 7, title: "Fed Interest Rate Cut in March?", category: "Economy", votes: 32400, chance: 55, ends: "Mar 20, 2025" },
     { id: 8, title: "US Inflation (CPI) below 2.5% in Feb?", category: "Economy", votes: 9800, chance: 60, ends: "Feb 14, 2025" },
     { id: 9, title: "Oil Prices to exceed $90/barrel?", category: "Economy", votes: 6100, chance: 22, ends: "Apr 01, 2025" },
 
     // TECH / SCIENCE
-    { id: 10, title: "GPT-5 Release Date before June 2025?", category: "Tech", votes: 21050, chance: 35, ends: "Jun 30, 2025" },
     { id: 11, title: "SpaceX Starship orbital success in Feb?", category: "Science", votes: 5210, chance: 88, ends: "Feb 28, 2025" },
     { id: 12, title: "Apple to announce foldable iPhone?", category: "Tech", votes: 14500, chance: 15, ends: "Sep 2025" },
 ];
@@ -35,90 +40,150 @@ export default function MarketsPage() {
 
     const filteredMarkets = selectedCategory === 'All Markets'
         ? MOCK_MARKETS
-        : MOCK_MARKETS.filter(m => m.category === (selectedCategory === 'Economy' ? 'Economy' : selectedCategory));
+        : MOCK_MARKETS.filter(m => m.category === selectedCategory);
+
+    // Separate featured (hero) vs regular cards
+    const heroMarkets = filteredMarkets.filter(m => m.isFeatured).slice(0, 2);
+    const regularMarkets = filteredMarkets.filter(m => !m.isFeatured);
 
     return (
-        // FIX: Using min-h-[100dvh] for Safari mobile support
-        // FIX: pt-0 because MainLayout already provides the pt-16 header offset
-        <div className="min-h-[100dvh] flex flex-col bg-[#020617] pt-0 gap-0">
+        <div className="min-h-[100dvh] flex flex-col bg-[#FAF9F7] pt-0 gap-0">
 
-            {/* 1. LAYER 1: TICKER TAPE */}
+            {/* 1. TICKER */}
             <div className="w-full">
                 <MarketTicker />
             </div>
 
-            {/* 2. LAYER 2: WHITE CONTROL HEADER */}
-            {/* Zero Top Margin to ensure it touches the Ticker */}
-            <section className="bg-white border-b border-slate-200 pb-10 pt-6 px-4 md:px-8 relative z-30 shadow-sm mt-0">
-                <div className="max-w-7xl mx-auto">
+            {/* 2. HEADER + FILTERS */}
+            <section className="bg-white border-b border-ink-200 pb-8 pt-8 px-4 md:px-8 relative z-30">
+                <div className="max-w-6xl mx-auto">
 
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
                         <div>
-                            <p className="text-slate-500 font-mono text-xs font-bold uppercase tracking-widest mb-2 flex items-center gap-2">
-                                <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+                            <p className="text-ink-400 font-mono text-xs font-semibold uppercase tracking-widest mb-2 flex items-center gap-2">
+                                <span className="w-1.5 h-1.5 bg-signal rounded-full"></span>
                                 Crowd Intelligence
                             </p>
-                            <h1 className="text-3xl md:text-4xl font-bold text-slate-900 tracking-tight font-sans">
+                            <h1 className="text-3xl md:text-4xl font-display font-bold text-ink-900 tracking-tight">
                                 Prediction Markets
                             </h1>
-                            <p className="text-slate-500 mt-2 max-w-2xl text-base">
+                            <p className="text-ink-500 mt-2 max-w-xl text-base">
                                 Crowdsourced probability data on future events.
                             </p>
                         </div>
 
-                        {/* Search Bar */}
+                        {/* Search */}
                         <div className="relative w-full md:w-80">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ink-400" />
                             <input
                                 type="text"
                                 placeholder="Search ticker or event..."
-                                className="w-full pl-10 pr-4 py-3 bg-slate-100 border border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/50 transition-all focus:bg-white"
+                                className="w-full pl-10 pr-4 py-3 bg-ink-50 border border-ink-200 rounded-lg text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-2 focus:ring-signal/30 focus:border-signal/50 transition-all"
                             />
                         </div>
                     </div>
 
-                    {/* Filter Tabs */}
-                    <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+                    {/* Filter Tabs with animated indicator */}
+                    <div className="flex items-center gap-1 overflow-x-auto pb-2 scrollbar-hide no-scrollbar relative">
                         {CATEGORIES.map((tab) => (
-                            <button
+                            <motion.button
                                 key={tab}
                                 onClick={() => setSelectedCategory(tab)}
-                                className={`
-                  px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap transition-all uppercase tracking-wide font-mono
-                  ${selectedCategory === tab
-                                        ? 'bg-[#020617] text-white shadow-lg shadow-slate-900/20'
-                                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'}
-                `}
+                                className={cn(
+                                    "relative px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors",
+                                    selectedCategory === tab
+                                        ? "text-ink-900"
+                                        : "text-ink-500 hover:text-ink-700 hover:bg-ink-50"
+                                )}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
                             >
                                 {tab}
-                            </button>
+                                {selectedCategory === tab && (
+                                    <motion.div
+                                        className="absolute bottom-0 left-2 right-2 h-0.5 bg-signal rounded-full"
+                                        layoutId="activeTab"
+                                        transition={springs.snappy}
+                                    />
+                                )}
+                            </motion.button>
                         ))}
                     </div>
 
                 </div>
             </section>
 
-            {/* 3. LAYER 3: DEEP OCEAN GRID */}
-            <section className="flex-1 bg-[#020617] py-16 px-4 md:px-8 border-t border-slate-900 relative overflow-hidden">
-                {/* Ambient Glows */}
-                <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-                <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-indigo-500/5 blur-[120px] rounded-full pointer-events-none" />
+            {/* 3. MARKETS GRID */}
+            <section className="flex-1 py-12 px-4 md:px-8 relative overflow-hidden">
+                {/* Decorative blur */}
+                <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-signal/5 blur-[100px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2" />
 
-                <div className="max-w-7xl mx-auto z-10 relative">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filteredMarkets.length > 0 ? (
-                            filteredMarkets.map((market) => (
-                                <PredictionMarketCard
-                                    key={market.id}
-                                    {...market}
-                                />
-                            ))
-                        ) : (
-                            <div className="col-span-full py-20 text-center text-slate-500 font-mono">
-                                No markets found for category: {selectedCategory}
-                            </div>
-                        )}
-                    </div>
+                <div className="max-w-6xl mx-auto z-10 relative">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={selectedCategory}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {filteredMarkets.length > 0 ? (
+                                <div className="space-y-8">
+
+                                    {/* Hero Cards (Featured) */}
+                                    {heroMarkets.length > 0 && (
+                                        <motion.div
+                                            className="grid grid-cols-1 lg:grid-cols-2 gap-6"
+                                            variants={staggerContainer}
+                                            initial="hidden"
+                                            animate="visible"
+                                        >
+                                            {heroMarkets.map((market, i) => (
+                                                <motion.div
+                                                    key={market.id}
+                                                    variants={fadeUpStagger}
+                                                    custom={i}
+                                                >
+                                                    <PredictionMarketCard
+                                                        {...market}
+                                                        isHero={true}
+                                                    />
+                                                </motion.div>
+                                            ))}
+                                        </motion.div>
+                                    )}
+
+                                    {/* Regular Cards - Staggered Grid */}
+                                    <motion.div
+                                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                        variants={staggerContainer}
+                                        initial="hidden"
+                                        animate="visible"
+                                    >
+                                        {regularMarkets.map((market, i) => (
+                                            <motion.div
+                                                key={market.id}
+                                                variants={fadeUpStagger}
+                                                custom={i}
+                                                className={cn(
+                                                    // Add subtle vertical offset for rhythm
+                                                    i % 3 === 1 && "md:translate-y-4",
+                                                    i % 3 === 2 && "md:-translate-y-2"
+                                                )}
+                                            >
+                                                <PredictionMarketCard {...market} />
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+
+                                </div>
+                            ) : (
+                                <div className="py-20 text-center text-ink-400 font-mono">
+                                    No markets found for category: {selectedCategory}
+                                </div>
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
             </section>
         </div>

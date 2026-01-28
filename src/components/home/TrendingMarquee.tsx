@@ -119,9 +119,9 @@ export function TrendingMarquee({ initialEvents = [] }: TrendingMarqueeProps) {
 
       <div className="flex items-center h-10">
         {/* Label */}
-        <div className="shrink-0 px-4 h-full flex items-center gap-2 border-r border-ink-800 bg-ink-900">
+        <div className="shrink-0 px-4 h-full flex items-center gap-2 border-r border-ink-200 bg-white/60">
           <span className="w-1.5 h-1.5 bg-signal rounded-full pulse-dot" />
-          <span className="data-label text-ink-400">Live</span>
+          <span className="data-label text-ink-600">Live</span>
         </div>
 
         {/* Scrolling content */}
@@ -141,9 +141,9 @@ export function TrendingMarquee({ initialEvents = [] }: TrendingMarqueeProps) {
             return (
               <div
                 key={`${event.id}-${index}`}
-                className="flex items-center shrink-0 px-4 h-10 border-r border-ink-800 hover:bg-ink-900 transition-colors"
+                className="flex items-center shrink-0 px-4 h-10 border-r border-ink-200 hover:bg-white/80 transition-colors"
               >
-                <span className="text-sm text-ink-300 mr-3 max-w-[240px] truncate">
+                <span className="text-sm text-ink-700 mr-3 max-w-[240px] truncate">
                   {event.title}
                 </span>
                 <span className={cn(
@@ -182,3 +182,4 @@ export function TrendingMarquee({ initialEvents = [] }: TrendingMarqueeProps) {
     </div>
   );
 }
+

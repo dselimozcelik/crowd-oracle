@@ -50,8 +50,11 @@
 }
 
 :root {
-  --background: #fafafa;
+  --background: #FAF9F7;
   --foreground: #0a0a0a;
+  --bg-subtle: #F5F4F2;
+  --bg-accent: #EFEDE9;
+  --bg-warm: #F8F7F4;
 }
 
 html {
@@ -130,8 +133,8 @@ body {
    ============================================= */
 
 .ticker-wrap {
-  background: var(--color-ink-950);
-  border-bottom: 1px solid var(--color-ink-800);
+  background: var(--bg-warm);
+  border-bottom: 1px solid var(--color-ink-200);
 }
 
 @keyframes ticker-scroll {
@@ -154,11 +157,11 @@ body {
 }
 
 .ticker-fade-left {
-  background: linear-gradient(to right, var(--color-ink-950) 0%, transparent 100%);
+  background: linear-gradient(to right, var(--bg-warm) 0%, transparent 100%);
 }
 
 .ticker-fade-right {
-  background: linear-gradient(to left, var(--color-ink-950) 0%, transparent 100%);
+  background: linear-gradient(to left, var(--bg-warm) 0%, transparent 100%);
 }
 
 /* =============================================
@@ -501,4 +504,82 @@ body {
 .podium-bronze {
   border: 1px solid #d97706;
   background: linear-gradient(180deg, #fef3c7 0%, #fff 100%);
+}
+
+/* =============================================
+   DECORATIVE ELEMENTS - Asymmetric Blurs & Gradients
+   ============================================= */
+
+.blur-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.blur-blob-signal {
+  background: var(--color-signal);
+  opacity: 0.15;
+}
+
+.blur-blob-warm {
+  background: linear-gradient(135deg, #F5E6D3 0%, #E8DFD4 100%);
+  opacity: 0.5;
+}
+
+.blur-blob-subtle {
+  background: linear-gradient(180deg, var(--bg-accent) 0%, transparent 100%);
+  opacity: 0.7;
+}
+
+/* Soft gradient section backgrounds */
+.section-warm {
+  background: linear-gradient(180deg, var(--background) 0%, var(--bg-subtle) 50%, var(--background) 100%);
+}
+
+.section-subtle {
+  background: var(--bg-subtle);
+}
+
+.section-accent {
+  background: linear-gradient(180deg, var(--bg-subtle) 0%, var(--bg-accent) 100%);
+}
+
+/* Card variants with slight rotation for organic feel */
+.card-organic {
+  transform: rotate(-0.5deg);
+}
+
+.card-organic-reverse {
+  transform: rotate(0.5deg);
+}
+
+/* Asymmetric shadows */
+.shadow-organic {
+  box-shadow:
+    -4px 8px 24px -8px rgba(0, 0, 0, 0.08),
+    0 2px 6px -2px rgba(0, 0, 0, 0.04);
+}
+
+.shadow-organic-up {
+  box-shadow:
+    4px -6px 20px -6px rgba(0, 0, 0, 0.06),
+    0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+/* Decorative dots pattern */
+.dots-pattern {
+  background-image: radial-gradient(circle, var(--color-ink-200) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Grain texture overlay */
+.grain-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Podium } from '@/components/leaderboard/Podium';
 import { RankingList } from '@/components/leaderboard/RankingList';
 import { StickyUserFooter } from '@/components/leaderboard/StickyUserFooter';
+import { springs, fadeUp } from '@/lib/animations';
 
 // --- MOCK DATA ---
 const TOP_TRADERS = [
@@ -17,62 +19,97 @@ const LIST_TRADERS = Array.from({ length: 25 }).map((_, i) => ({
     rank: i + 4,
     name: `Trader_${1024 + i * 17}`,
     score: parseFloat((92 - i * 0.8).toFixed(1)),
-    accuracy: 60 + (i * 7) % 30, // Deterministic
+    accuracy: 60 + (i * 7) % 30,
     vol: 50 + (i * 123) % 1000,
     color: ''
 }));
+
+const TIME_FRAMES = [
+    { key: 'weekly', label: 'Weekly' },
+    { key: 'monthly', label: 'Monthly' },
+    { key: 'all', label: 'All Time' },
+] as const;
 
 export default function LeaderboardPage() {
     const [timeFrame, setTimeFrame] = useState<'weekly' | 'monthly' | 'all'>('weekly');
 
     return (
-        <div className="min-h-screen bg-slate-50 font-sans pb-32">
+        <div className="min-h-screen bg-[#FAF9F7] font-sans pb-32 relative">
+            {/* Decorative blur blob */}
+            <div className="fixed top-0 left-0 w-[400px] h-[400px] bg-signal/5 blur-[120px] rounded-full pointer-events-none -translate-x-1/2 -translate-y-1/2 z-0" />
+            <div className="fixed bottom-0 right-0 w-[300px] h-[300px] bg-amber-500/5 blur-[100px] rounded-full pointer-events-none translate-x-1/2 translate-y-1/2 z-0" />
 
-            {/* 1. HEADER (White on White) */}
-            <div className="pt-20 pb-12 px-6 text-center max-w-6xl mx-auto">
-                <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+            {/* 1. HEADER */}
+            <motion.div
+                className="pt-24 pb-12 px-6 text-center max-w-6xl mx-auto relative z-10"
+                variants={fadeUp}
+                initial="hidden"
+                animate="visible"
+            >
+                <h1 className="text-4xl md:text-5xl font-display font-bold text-ink-900 tracking-tight mb-4">
                     Hall of Fame
                 </h1>
-                <p className="text-slate-500 text-lg mb-8 max-w-2xl mx-auto">
-                    Top anonymous oracles ranked by <span className="text-emerald-600 font-bold">Performance</span> and <span className="text-emerald-600 font-bold">Consistency</span>.
+                <p className="text-ink-500 text-lg mb-10 max-w-2xl mx-auto">
+                    Top anonymous oracles ranked by <span className="text-signal font-semibold">Performance</span> and <span className="text-signal font-semibold">Consistency</span>.
                 </p>
 
-                {/* FILTERS (Centered) */}
+                {/* TIME FILTER TABS */}
                 <div className="flex justify-center">
-                    <div className="inline-flex bg-slate-100 p-1.5 rounded-full ring-1 ring-slate-200">
-                        {['weekly', 'monthly', 'all'].map((t) => (
-                            <button
-                                key={t}
-                                onClick={() => setTimeFrame(t as any)}
+                    <div className="inline-flex bg-white p-1 rounded-full border border-ink-200 shadow-sm relative">
+                        {TIME_FRAMES.map((t) => (
+                            <motion.button
+                                key={t.key}
+                                onClick={() => setTimeFrame(t.key)}
                                 className={cn(
-                                    "px-6 py-2 rounded-full text-sm font-bold transition-all capitalize",
-                                    timeFrame === t
-                                        ? "bg-white text-slate-900 shadow-sm border-2 border-emerald-500"
-                                        : "text-slate-500 hover:text-slate-700 hover:bg-slate-200/50"
+                                    "relative px-6 py-2 rounded-full text-sm font-semibold transition-colors capitalize z-10",
+                                    timeFrame === t.key
+                                        ? "text-white"
+                                        : "text-ink-500 hover:text-ink-700"
                                 )}
+                                whileTap={{ scale: 0.98 }}
                             >
-                                {t === 'all' ? 'All Time' : t}
-                            </button>
+                                {t.label}
+                                {timeFrame === t.key && (
+                                    <motion.div
+                                        className="absolute inset-0 bg-signal rounded-full -z-10"
+                                        layoutId="activeTimeTab"
+                                        transition={springs.snappy}
+                                    />
+                                )}
+                            </motion.button>
                         ))}
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
-            <div className="max-w-5xl mx-auto px-4 space-y-8"> {/* GAP BETWEEN BLOCKS */}
+            <div className="max-w-5xl mx-auto px-4 space-y-10 relative z-10">
 
-                {/* 2. PODIUM SECTION (No Background Container, Separate Cards) */}
-                <div className="mb-16 relative z-10">
+                {/* 2. PODIUM SECTION */}
+                <div className="mb-12">
                     <Podium topTraders={TOP_TRADERS} />
                 </div>
 
-                {/* 3. RANKING LIST BLOCK (Navy Island) */}
-                <div className="bg-[#020617] rounded-[2.5rem] p-6 shadow-xl overflow-hidden ring-1 ring-slate-900/5">
-                    <div className="flex items-center gap-3 mb-6 px-4 pt-2">
-                        <div className="h-px bg-emerald-500/20 flex-1"></div>
-                        <span className="text-emerald-500/80 font-mono text-xs uppercase tracking-[0.2em] font-bold">Global Rankings</span>
-                        <div className="h-px bg-emerald-500/20 flex-1"></div>
+                {/* 3. RANKING LIST */}
+                <div>
+                    <div className="flex items-center gap-3 mb-6 px-2">
+                        <div className="h-px bg-ink-200 flex-1"></div>
+                        <span className="text-ink-400 font-mono text-xs uppercase tracking-widest font-semibold">
+                            Global Rankings
+                        </span>
+                        <div className="h-px bg-ink-200 flex-1"></div>
                     </div>
-                    <RankingList traders={LIST_TRADERS} />
+
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={timeFrame}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <RankingList traders={LIST_TRADERS} />
+                        </motion.div>
+                    </AnimatePresence>
                 </div>
 
             </div>

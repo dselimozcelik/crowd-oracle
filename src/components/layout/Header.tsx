@@ -131,13 +131,15 @@ export function Header({ user, profile, stats }: HeaderProps) {
                                 </>
                             )}
                             <DropdownMenuSeparator className="bg-ink-100" />
-                            <DropdownMenuItem asChild className="px-3 py-2 hover:bg-ink-50 cursor-pointer">
-                                <form action={signOut}>
-                                    <button type="submit" className="flex items-center gap-2 w-full">
-                                        <LogOut className="w-4 h-4 text-ink-400" />
-                                        <span className="text-sm">Log out</span>
-                                    </button>
-                                </form>
+                            <DropdownMenuItem
+                                className="px-3 py-2 hover:bg-ink-50 cursor-pointer"
+                                onSelect={(e) => {
+                                    e.preventDefault();
+                                    signOut();
+                                }}
+                            >
+                                <LogOut className="w-4 h-4 text-ink-400" />
+                                <span className="text-sm">Log out</span>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

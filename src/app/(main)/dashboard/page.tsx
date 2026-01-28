@@ -1,10 +1,12 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { IdentityPanel } from '@/components/dashboard/IdentityPanel';
 import { KPIGrid } from '@/components/dashboard/KPIGrid';
 import { TrustSonar } from '@/components/dashboard/TrustSonar';
 import { SkillRadar } from '@/components/dashboard/SkillRadar';
 import { ActivePredictions } from '@/components/dashboard/ActivePredictions';
+import { staggerContainer, staggerItem } from '@/lib/animations';
 
 // --- MOCK DATA FOR DEVELOPMENT ---
 const MOCK_USER = {
@@ -48,33 +50,45 @@ const MOCK_PREDICTIONS = [
 
 export default function DashboardPage() {
     return (
-        <div className="min-h-screen bg-[#020617] text-slate-50 pt-20 pb-12 px-4 md:px-8">
-            <div className="max-w-7xl mx-auto space-y-6">
+        <div className="min-h-screen bg-[#FAF9F7] text-ink-900 pt-20 pb-12 px-4 md:px-8 relative">
+            {/* Decorative blur blob */}
+            <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-signal/5 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4 z-0" />
 
+            <motion.div
+                className="max-w-6xl mx-auto space-y-8 relative z-10"
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+            >
                 {/* 1. IDENTITY HEADER */}
-                <IdentityPanel user={MOCK_USER} />
+                <motion.div variants={staggerItem}>
+                    <IdentityPanel user={MOCK_USER} />
+                </motion.div>
 
-                {/* 2. KPI GRID (The Core Signals) */}
-                <KPIGrid stats={{
-                    trustScore: MOCK_USER.trustScore,
-                    accuracy: MOCK_USER.accuracy,
-                    volume: MOCK_USER.volume,
-                    specialty: MOCK_USER.specialty
-                }} />
+                {/* 2. KPI GRID */}
+                <motion.div variants={staggerItem}>
+                    <KPIGrid stats={{
+                        trustScore: MOCK_USER.trustScore,
+                        accuracy: MOCK_USER.accuracy,
+                        volume: MOCK_USER.volume,
+                        specialty: MOCK_USER.specialty
+                    }} />
+                </motion.div>
 
                 {/* 3. VISUAL ANALYTICS */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {/* Left: Trust Score History (Sonar) */}
+                <motion.div
+                    className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+                    variants={staggerItem}
+                >
                     <TrustSonar data={MOCK_HISTORY} />
-
-                    {/* Right: Skill Radar */}
                     <SkillRadar data={MOCK_SKILLS} />
-                </div>
+                </motion.div>
 
                 {/* 4. ACTIVE LOGBOOK */}
-                <ActivePredictions predictions={MOCK_PREDICTIONS} />
-
-            </div>
+                <motion.div variants={staggerItem}>
+                    <ActivePredictions predictions={MOCK_PREDICTIONS} />
+                </motion.div>
+            </motion.div>
         </div>
     );
 }
