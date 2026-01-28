@@ -1,0 +1,504 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --font-display: var(--font-inter), "Inter", system-ui, sans-serif;
+  --font-sans: var(--font-geist), "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, monospace;
+
+  --color-ink-950: #0a0a0a;
+  --color-ink-900: #141414;
+  --color-ink-800: #1f1f1f;
+  --color-ink-700: #2e2e2e;
+  --color-ink-600: #404040;
+  --color-ink-500: #5c5c5c;
+  --color-ink-400: #7a7a7a;
+  --color-ink-300: #a3a3a3;
+  --color-ink-200: #d4d4d4;
+  --color-ink-100: #ededed;
+  --color-ink-50: #f7f7f7;
+
+  --color-signal: #00d26a;
+  --color-signal-dim: #00d26a40;
+  --color-signal-muted: #00d26a20;
+
+  --color-yes: #00c853;
+  --color-yes-dim: #00c85380;
+  --color-yes-muted: #00c85320;
+  --color-no: #ff3d3d;
+  --color-no-dim: #ff3d3d80;
+  --color-no-muted: #ff3d3d20;
+
+  --color-amber: #f59e0b;
+  --color-amber-dim: #f59e0b60;
+
+  /* Maritime Fintech Palette */
+  --color-void: #020617;
+  --color-emerald-500: #10b981;
+  --color-emerald-400: #34d399;
+  --color-red-500: #ef4444;
+  --color-red-400: #f87171;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-400: #94a3b8;
+  --color-slate-100: #f1f5f9;
+  --color-slate-50: #f8fafc;
+}
+
+:root {
+  --background: #fafafa;
+  --foreground: #0a0a0a;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-feature-settings: "ss01", "cv01", "calt";
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background: var(--color-signal);
+  color: #0a0a0a;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-300);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-500);
+}
+
+/* =============================================
+   EDITORIAL TYPOGRAPHY
+   ============================================= */
+
+.headline {
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.subhead {
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+}
+
+.data-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.data-value {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* =============================================
+   MARQUEE - TICKER TAPE STYLE
+   ============================================= */
+
+.ticker-wrap {
+  background: var(--color-ink-950);
+  border-bottom: 1px solid var(--color-ink-800);
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-scroll {
+  animation: ticker-scroll 90s linear infinite;
+  will-change: transform;
+}
+
+.ticker-paused {
+  animation-play-state: paused;
+}
+
+.ticker-fade-left {
+  background: linear-gradient(to right, var(--color-ink-950) 0%, transparent 100%);
+}
+
+.ticker-fade-right {
+  background: linear-gradient(to left, var(--color-ink-950) 0%, transparent 100%);
+}
+
+/* =============================================
+   CARDS - MIXED CORNER RADIUS
+   ============================================= */
+
+.card-sharp {
+  border-radius: 0;
+  border: 1px solid var(--color-ink-200);
+}
+
+.card-soft {
+  border-radius: 6px;
+  border: 1px solid var(--color-ink-200);
+}
+
+.card-data {
+  border-radius: 2px;
+  border: 1px solid var(--color-ink-200);
+  background: var(--color-ink-50);
+}
+
+.card-elevated {
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+.card-interactive {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.card-interactive:hover {
+  border-color: var(--color-ink-400);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* =============================================
+   BUTTONS
+   ============================================= */
+
+.btn-primary {
+  background: var(--color-ink-950);
+  color: white;
+  border: none;
+  border-radius: 2px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease;
+}
+
+.btn-primary:hover {
+  background: var(--color-ink-800);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-signal {
+  background: var(--color-signal);
+  color: var(--color-ink-950);
+  border: none;
+  border-radius: 2px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease;
+}
+
+.btn-signal:hover {
+  filter: brightness(1.1);
+}
+
+.btn-ghost {
+  background: transparent;
+  border: none;
+  color: var(--color-ink-600);
+  transition: color 0.15s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--color-ink-950);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid var(--color-ink-300);
+  color: var(--color-ink-700);
+  border-radius: 2px;
+  transition: all 0.15s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--color-ink-950);
+  color: var(--color-ink-950);
+}
+
+/* =============================================
+   VOTE BUTTONS
+   ============================================= */
+
+.vote-yes {
+  background: var(--color-yes-muted);
+  color: var(--color-yes);
+  border: 1px solid var(--color-yes-dim);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  transition: all 0.1s ease;
+}
+
+.vote-yes:hover {
+  background: var(--color-yes);
+  color: white;
+  border-color: var(--color-yes);
+}
+
+.vote-no {
+  background: var(--color-no-muted);
+  color: var(--color-no);
+  border: 1px solid var(--color-no-dim);
+  border-radius: 2px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  transition: all 0.1s ease;
+}
+
+.vote-no:hover {
+  background: var(--color-no);
+  color: white;
+  border-color: var(--color-no);
+}
+
+/* =============================================
+   PROGRESS BARS
+   ============================================= */
+
+.progress-track {
+  height: 4px;
+  background: var(--color-ink-200);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.progress-yes {
+  background: var(--color-yes);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.progress-no {
+  background: var(--color-no);
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+/* =============================================
+   BADGES / TAGS
+   ============================================= */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 1px solid;
+}
+
+.tag-neutral {
+  background: var(--color-ink-100);
+  color: var(--color-ink-600);
+  border-color: var(--color-ink-200);
+}
+
+.tag-signal {
+  background: var(--color-signal-muted);
+  color: #00a854;
+  border-color: var(--color-signal-dim);
+}
+
+.tag-live {
+  background: var(--color-no-muted);
+  color: var(--color-no);
+  border-color: var(--color-no-dim);
+}
+
+/* =============================================
+   ANIMATIONS
+   ============================================= */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-1 {
+  animation-delay: 0.05s;
+}
+
+.stagger-2 {
+  animation-delay: 0.1s;
+}
+
+.stagger-3 {
+  animation-delay: 0.15s;
+}
+
+.stagger-4 {
+  animation-delay: 0.2s;
+}
+
+.stagger-5 {
+  animation-delay: 0.25s;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* =============================================
+   TRUST SCORE TIERS
+   ============================================= */
+
+.tier-newcomer {
+  color: var(--color-ink-500);
+}
+
+.tier-regular {
+  color: #3b82f6;
+}
+
+.tier-reliable {
+  color: var(--color-yes);
+}
+
+.tier-expert {
+  color: #8b5cf6;
+}
+
+.tier-superforecaster {
+  color: var(--color-amber);
+}
+
+/* =============================================
+   NOISE TEXTURE
+   ============================================= */
+
+.noise::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* =============================================
+   DIVIDERS
+   ============================================= */
+
+.divider {
+  height: 1px;
+  background: var(--color-ink-200);
+}
+
+.divider-vertical {
+  width: 1px;
+  background: var(--color-ink-200);
+}
+
+/* =============================================
+   GLASS (subtle, not overdone)
+   ============================================= */
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-ink-200);
+}
+
+/* =============================================
+   PODIUM STYLES
+   ============================================= */
+
+.podium-gold {
+  border: 1px solid #fbbf24;
+  background: linear-gradient(180deg, #fef3c7 0%, #fff 100%);
+}
+
+.podium-silver {
+  border: 1px solid var(--color-ink-300);
+  background: linear-gradient(180deg, var(--color-ink-100) 0%, #fff 100%);
+}
+
+.podium-bronze {
+  border: 1px solid #d97706;
+  background: linear-gradient(180deg, #fef3c7 0%, #fff 100%);
+}
