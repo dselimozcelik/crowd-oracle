@@ -158,15 +158,15 @@ export function AnimatedLandingPage() {
                             animate={shouldReduceMotion ? {} : { scale: [1, 1.2, 1] }}
                             transition={{ duration: 2, repeat: Infinity }}
                         />
-                        <span className="font-display text-xl tracking-tight">CrowdOracle</span>
+                        <span className="font-display text-xl tracking-tight">Referandum</span>
                     </Link>
                     <div className="flex items-center gap-6">
-                        <AnimatedNavLink href="/events">Markets</AnimatedNavLink>
-                        <AnimatedNavLink href="/leaderboard">Leaderboard</AnimatedNavLink>
+                        <AnimatedNavLink href="/events">Piyasalar</AnimatedNavLink>
+                        <AnimatedNavLink href="/leaderboard">Liderlik Tablosu</AnimatedNavLink>
                         <div className="h-4 w-px bg-ink-200" />
-                        <AnimatedNavLink href="/login">Sign in</AnimatedNavLink>
+                        <AnimatedNavLink href="/login">Giriş Yap</AnimatedNavLink>
                         <AnimatedButton href="/signup" variant="primary">
-                            Get Started
+                            Başla
                         </AnimatedButton>
                     </div>
                 </div>
@@ -204,7 +204,7 @@ export function AnimatedLandingPage() {
                             initial="hidden"
                             animate="visible"
                         >
-                            Prediction Markets
+                            Tahmin Piyasaları
                         </motion.p>
                         <motion.h1
                             className="font-display text-5xl lg:text-6xl headline mb-6"
@@ -213,7 +213,7 @@ export function AnimatedLandingPage() {
                             initial="hidden"
                             animate="visible"
                         >
-                            The future, priced<br />by the crowd
+                            Gelecek, kalabalık<br />tarafından fiyatlandırılıyor
                         </motion.h1>
                         <motion.p
                             className="text-xl text-ink-600 subhead max-w-md mb-10"
@@ -222,8 +222,8 @@ export function AnimatedLandingPage() {
                             initial="hidden"
                             animate="visible"
                         >
-                            Make predictions on real-world events. Build your track record.
-                            The most accurate forecasters rise to the top.
+                            Gerçek dünya olayları hakkında tahminlerde bulunun. Geçmişinizi oluşturun.
+                            En doğru tahminleyiciler zirveye çıkar.
                         </motion.p>
                         <motion.div
                             className="flex items-center gap-4"
@@ -233,11 +233,11 @@ export function AnimatedLandingPage() {
                             animate="visible"
                         >
                             <AnimatedButton href="/signup" variant="primary">
-                                Start Predicting
+                                Tahmin Yapmaya Başla
                                 <ArrowRight className="w-4 h-4" />
                             </AnimatedButton>
                             <AnimatedButton href="/events" variant="outline">
-                                Browse Markets
+                                Piyasalara Göz At
                             </AnimatedButton>
                         </motion.div>
                     </div>
@@ -262,18 +262,18 @@ export function AnimatedLandingPage() {
                                     animate={shouldReduceMotion ? {} : { opacity: [1, 0.4, 1] }}
                                     transition={{ duration: 2, repeat: Infinity }}
                                 />
-                                <span className="data-label text-ink-500">Live Platform Stats</span>
+                                <span className="data-label text-ink-500">Canlı Platform İstatistikleri</span>
                             </div>
                             <div className="space-y-5">
-                                <AnimatedStat label="Active Markets" value={47} isVisible={statsVisible} />
-                                <AnimatedStat label="Total Predictions" value={128493} isVisible={statsVisible} />
+                                <AnimatedStat label="Aktif Piyasalar" value={47} isVisible={statsVisible} />
+                                <AnimatedStat label="Toplam Tahmin" value={128493} isVisible={statsVisible} />
                                 <div className="flex justify-between items-baseline border-b border-ink-100 pb-4">
-                                    <span className="text-sm text-ink-500">Platform Accuracy</span>
+                                    <span className="text-sm text-ink-500">Platform Doğruluğu</span>
                                     <span className="data-value text-2xl font-medium text-yes">
                                         {statsVisible ? '78.4%' : '0%'}
                                     </span>
                                 </div>
-                                <AnimatedStat label="Active Forecasters" value={3241} isVisible={statsVisible} />
+                                <AnimatedStat label="Aktif Tahminleyiciler" value={3241} isVisible={statsVisible} />
                             </div>
                         </motion.div>
                     </motion.div>
@@ -301,15 +301,15 @@ export function AnimatedLandingPage() {
                     viewport={viewportOnce}
                 >
                     <div className="col-span-12 lg:col-span-5">
-                        <p className="data-label text-ink-400 mb-3">How It Works</p>
+                        <p className="data-label text-ink-400 mb-3">Nasıl Çalışır</p>
                         <h2 className="font-display text-3xl lg:text-4xl headline">
-                            Accuracy equals influence
+                            Doğruluk, etki demektir
                         </h2>
                     </div>
                     <div className="col-span-12 lg:col-span-7 lg:pl-8">
                         <p className="text-lg text-ink-600 subhead max-w-xl">
-                            Unlike simple polls, every vote is weighted by the forecaster&apos;s track record.
-                            Proven experts have more influence on the final prediction.
+                            Basit anketlerin aksine, her oy tahminleyicinin geçmişine göre ağırlıklandırılır.
+                            Kanıtlanmış uzmanlar nihai tahmin üzerinde daha fazla etkiye sahiptir.
                         </p>
                     </div>
                 </motion.div>
@@ -327,9 +327,9 @@ export function AnimatedLandingPage() {
                         delay={0}
                     >
                         <span className="text-5xl font-bold text-ink-100 group-hover:text-signal/30 transition-colors">01</span>
-                        <h3 className="font-semibold text-xl mt-3 mb-3">Predict</h3>
+                        <h3 className="font-semibold text-xl mt-3 mb-3">Tahmin Yap</h3>
                         <p className="text-sm text-ink-500 leading-relaxed">
-                            Vote Yes or No on upcoming events. Set your confidence level.
+                            Gelecek olaylar için Evet veya Hayır oyu verin. Güven seviyenizi belirleyin.
                         </p>
                     </AnimatedCard>
 
@@ -338,9 +338,9 @@ export function AnimatedLandingPage() {
                         delay={1}
                     >
                         <span className="text-5xl font-bold text-ink-100 group-hover:text-signal/30 transition-colors">02</span>
-                        <h3 className="font-semibold text-xl mt-3 mb-3">Build Score</h3>
+                        <h3 className="font-semibold text-xl mt-3 mb-3">Puan Oluştur</h3>
                         <p className="text-sm text-ink-500 leading-relaxed">
-                            Correct predictions raise your trust score. Wrong ones lower it.
+                            Doğru tahminler güven puanınızı yükseltir. Yanlış olanlar düşürür.
                         </p>
                     </AnimatedCard>
 
@@ -349,9 +349,9 @@ export function AnimatedLandingPage() {
                         delay={2}
                     >
                         <span className="text-5xl font-bold text-ink-100 group-hover:text-signal/30 transition-colors">03</span>
-                        <h3 className="font-semibold text-xl mt-3 mb-3">Gain Influence</h3>
+                        <h3 className="font-semibold text-xl mt-3 mb-3">Etki Kazan</h3>
                         <p className="text-sm text-ink-500 leading-relaxed">
-                            Higher scores mean your votes carry more weight in predictions.
+                            Yüksek puanlar, oylarınızın tahminlerde daha fazla ağırlık taşıması anlamına gelir.
                         </p>
                     </AnimatedCard>
                 </motion.div>
@@ -372,13 +372,13 @@ export function AnimatedLandingPage() {
                             {/* Decorative dots pattern */}
                             <div className="absolute -left-8 top-8 w-32 h-32 dots-pattern opacity-50" />
 
-                            <p className="data-label text-ink-400 mb-3">Trust System</p>
+                            <p className="data-label text-ink-400 mb-3">Güven Sistemi</p>
                             <h2 className="font-display text-3xl lg:text-4xl headline mb-6">
-                                Five tiers of forecaster status
+                                Beş seviye tahminleyici statüsü
                             </h2>
                             <p className="text-ink-600 subhead mb-8">
-                                Everyone starts at 50%. Your accuracy over time determines your tier
-                                and voting weight.
+                                Herkes %50'den başlar. Zaman içindeki doğruluğunuz seviyenizi
+                                ve oy ağırlığınızı belirler.
                             </p>
 
                         </motion.div>
@@ -395,9 +395,9 @@ export function AnimatedLandingPage() {
                                 <table className="w-full">
                                     <thead>
                                         <tr className="border-b border-ink-200 bg-ink-50">
-                                            <th className="text-left p-4 data-label text-ink-500">Tier</th>
-                                            <th className="text-left p-4 data-label text-ink-500">Accuracy</th>
-                                            <th className="text-left p-4 data-label text-ink-500">Weight</th>
+                                            <th className="text-left p-4 data-label text-ink-500">Seviye</th>
+                                            <th className="text-left p-4 data-label text-ink-500">Doğruluk</th>
+                                            <th className="text-left p-4 data-label text-ink-500">Ağırlık</th>
                                         </tr>
                                     </thead>
                                     <motion.tbody
@@ -407,11 +407,11 @@ export function AnimatedLandingPage() {
                                         viewport={viewportOnce}
                                     >
                                         {[
-                                            { tier: 'Newcomer', color: 'bg-ink-400', accuracy: '< 55%', weight: '0.5x' },
-                                            { tier: 'Regular', color: 'bg-blue-500', accuracy: '55–65%', weight: '0.8x' },
-                                            { tier: 'Reliable', color: 'bg-yes', accuracy: '65–75%', weight: '1.0x' },
-                                            { tier: 'Expert', color: 'bg-violet-500', accuracy: '75–85%', weight: '1.5x' },
-                                            { tier: 'Superforecaster', color: 'bg-amber', accuracy: '> 85%', weight: '2.0x' },
+                                            { tier: 'Yeni', color: 'bg-ink-400', accuracy: '< 55%', weight: '0.5x' },
+                                            { tier: 'Normal', color: 'bg-blue-500', accuracy: '55–65%', weight: '0.8x' },
+                                            { tier: 'Güvenilir', color: 'bg-yes', accuracy: '65–75%', weight: '1.0x' },
+                                            { tier: 'Uzman', color: 'bg-violet-500', accuracy: '75–85%', weight: '1.5x' },
+                                            { tier: 'Süperkahin', color: 'bg-amber', accuracy: '> 85%', weight: '2.0x' },
                                         ].map((row, i) => (
                                             <motion.tr
                                                 key={row.tier}

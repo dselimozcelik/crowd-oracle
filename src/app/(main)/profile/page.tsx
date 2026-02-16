@@ -86,8 +86,8 @@ export default async function ProfilePage() {
         <div className="max-w-4xl mx-auto px-4 py-8">
             {/* Header */}
             <div className="mb-8">
-                <p className="data-label text-ink-400 mb-2">Account</p>
-                <h1 className="font-display text-3xl headline">Profile</h1>
+                <p className="data-label text-ink-400 mb-2">Hesap</p>
+                <h1 className="font-display text-3xl headline">Profil</h1>
             </div>
 
             {/* Profile Card */}
@@ -109,12 +109,12 @@ export default async function ProfilePage() {
                         <div className="flex items-center gap-4 text-sm text-ink-500">
                             <span className="flex items-center gap-1.5">
                                 <Calendar className="w-4 h-4" />
-                                Joined {new Date(profile?.created_at || '').toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                                Katıldı {new Date(profile?.created_at || '').toLocaleDateString('tr-TR', { month: 'short', year: 'numeric' })}
                             </span>
                             {stats?.rank && (
                                 <span className="flex items-center gap-1.5 text-amber font-medium">
                                     <Trophy className="w-4 h-4" />
-                                    Rank #{stats.rank}
+                                    Sıralama #{stats.rank}
                                 </span>
                             )}
                         </div>
@@ -127,28 +127,28 @@ export default async function ProfilePage() {
                 <div className="card-sharp bg-white p-4">
                     <div className="flex items-center gap-3 mb-2">
                         <Target className="w-4 h-4 text-ink-400" />
-                        <span className="data-label text-ink-400">Predictions</span>
+                        <span className="data-label text-ink-400">Tahminler</span>
                     </div>
                     <span className="data-value text-2xl">{stats?.total_predictions || 0}</span>
                 </div>
                 <div className="card-sharp bg-white p-4">
                     <div className="flex items-center gap-3 mb-2">
                         <TrendingUp className="w-4 h-4 text-ink-400" />
-                        <span className="data-label text-ink-400">Accuracy</span>
+                        <span className="data-label text-ink-400">Doğruluk</span>
                     </div>
                     <span className="data-value text-2xl text-yes">{accuracyPct.toFixed(1)}%</span>
                 </div>
                 <div className="card-sharp bg-white p-4">
                     <div className="flex items-center gap-3 mb-2">
                         <Flame className="w-4 h-4 text-ink-400" />
-                        <span className="data-label text-ink-400">Streak</span>
+                        <span className="data-label text-ink-400">Seri</span>
                     </div>
                     <span className="data-value text-2xl">{stats?.current_streak || 0}</span>
                 </div>
                 <div className="card-sharp bg-white p-4">
                     <div className="flex items-center gap-3 mb-2">
                         <Award className="w-4 h-4 text-ink-400" />
-                        <span className="data-label text-ink-400">Badges</span>
+                        <span className="data-label text-ink-400">Rozetler</span>
                     </div>
                     <span className="data-value text-2xl">{badgeCount || 0}</span>
                 </div>
@@ -157,7 +157,7 @@ export default async function ProfilePage() {
             {/* Trust Score Progress */}
             <div className="card-sharp bg-white p-6 mb-6">
                 <div className="flex items-center justify-between mb-4">
-                    <h3 className="font-medium">Trust Score</h3>
+                    <h3 className="font-medium">Güven Puanı</h3>
                     <span className="data-value text-xl">{(trustScore * 100).toFixed(1)}%</span>
                 </div>
                 <div className="progress-track mb-3">
@@ -167,18 +167,18 @@ export default async function ProfilePage() {
                     />
                 </div>
                 <div className="flex justify-between text-xs data-label">
-                    <span className={cn(trustScore < 0.55 ? "text-ink-700" : "text-ink-400")}>Newcomer</span>
-                    <span className={cn(trustScore >= 0.55 && trustScore < 0.65 ? "text-ink-700" : "text-ink-400")}>Regular</span>
-                    <span className={cn(trustScore >= 0.65 && trustScore < 0.75 ? "text-ink-700" : "text-ink-400")}>Reliable</span>
-                    <span className={cn(trustScore >= 0.75 && trustScore < 0.85 ? "text-ink-700" : "text-ink-400")}>Expert</span>
-                    <span className={cn(trustScore >= 0.85 ? "text-amber" : "text-ink-400")}>Super</span>
+                    <span className={cn(trustScore < 0.55 ? "text-ink-700" : "text-ink-400")}>Yeni</span>
+                    <span className={cn(trustScore >= 0.55 && trustScore < 0.65 ? "text-ink-700" : "text-ink-400")}>Normal</span>
+                    <span className={cn(trustScore >= 0.65 && trustScore < 0.75 ? "text-ink-700" : "text-ink-400")}>Güvenilir</span>
+                    <span className={cn(trustScore >= 0.75 && trustScore < 0.85 ? "text-ink-700" : "text-ink-400")}>Uzman</span>
+                    <span className={cn(trustScore >= 0.85 ? "text-amber" : "text-ink-400")}>Süper</span>
                 </div>
             </div>
 
             {/* Recent Predictions */}
             <div className="card-sharp bg-white overflow-hidden">
                 <div className="p-4 border-b border-ink-100">
-                    <h3 className="font-medium">Recent Predictions</h3>
+                    <h3 className="font-medium">Son Tahminler</h3>
                 </div>
                 {recentVotes && recentVotes.length > 0 ? (
                     <div>
@@ -205,7 +205,7 @@ export default async function ProfilePage() {
                                             ? "bg-yes-muted text-yes border-yes-dim"
                                             : "bg-no-muted text-no border-no-dim"
                                     )}>
-                                        {vote.prediction ? 'Yes' : 'No'}
+                                        {vote.prediction ? 'Evet' : 'Hayır'}
                                     </span>
                                     {vote.is_correct !== null && (
                                         vote.is_correct
@@ -221,9 +221,9 @@ export default async function ProfilePage() {
                         <div className="w-10 h-10 bg-ink-100 rounded flex items-center justify-center mx-auto mb-3">
                             <Target className="w-5 h-5 text-ink-400" />
                         </div>
-                        <p className="text-sm text-ink-500 mb-4">No predictions yet</p>
+                        <p className="text-sm text-ink-500 mb-4">Henüz tahmin yok</p>
                         <Link href="/events" className="btn-primary px-4 py-2 text-sm inline-block">
-                            Browse Markets
+                            Piyasalara Göz At
                         </Link>
                     </div>
                 )}

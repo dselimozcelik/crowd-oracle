@@ -26,18 +26,18 @@ export default function LoginPage() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 mb-12">
                         <div className="w-2 h-2 bg-signal rounded-full" />
-                        <span className="font-display text-lg">CrowdOracle</span>
+                        <span className="font-display text-lg">Referandum</span>
                     </Link>
 
-                    <h1 className="font-display text-2xl headline mb-2">Sign in</h1>
+                    <h1 className="font-display text-2xl headline mb-2">Giriş Yap</h1>
                     <p className="text-ink-500 mb-8">
-                        Continue to your account
+                        Hesabınıza devam edin
                     </p>
 
                     <form action={handleSubmit} className="space-y-4">
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-ink-700 mb-1.5">
-                                Email
+                                E-posta
                             </label>
                             <input
                                 id="email"
@@ -51,7 +51,7 @@ export default function LoginPage() {
                         </div>
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-ink-700 mb-1.5">
-                                Password
+                                Şifre
                             </label>
                             <input
                                 id="password"
@@ -71,18 +71,18 @@ export default function LoginPage() {
                             {isLoading ? (
                                 <>
                                     <Loader2 className="w-4 h-4 animate-spin" />
-                                    Signing in...
+                                    Giriş yapılıyor...
                                 </>
                             ) : (
-                                'Sign in'
+                                'Giriş Yap'
                             )}
                         </button>
                     </form>
 
                     <p className="mt-6 text-sm text-ink-500 text-center">
-                        Don&apos;t have an account?{' '}
+                        Hesabınız yok mu?{' '}
                         <Link href="/signup" className="text-ink-900 font-medium hover:underline">
-                            Sign up
+                            Kayıt Ol
                         </Link>
                     </p>
                 </div>
@@ -91,21 +91,21 @@ export default function LoginPage() {
             {/* Right panel - decorative */}
             <div className="hidden lg:flex flex-1 bg-ink-950 items-center justify-center p-12">
                 <div className="max-w-md">
-                    <p className="data-label text-ink-500 mb-4">Platform Stats</p>
+                    <p className="data-label text-ink-500 mb-4">Platform İstatistikleri</p>
                     <div className="space-y-6">
                         <div>
                             <span className="data-value text-5xl text-white">78.4%</span>
-                            <p className="text-ink-400 mt-1">Aggregate platform accuracy</p>
+                            <p className="text-ink-400 mt-1">Toplam platform doğruluğu</p>
                         </div>
                         <div className="divider bg-ink-800" />
                         <div>
                             <span className="data-value text-5xl text-white">128K</span>
-                            <p className="text-ink-400 mt-1">Predictions made</p>
+                            <p className="text-ink-400 mt-1">Yapılan tahminler</p>
                         </div>
                         <div className="divider bg-ink-800" />
                         <div>
                             <span className="data-value text-5xl text-signal">3,241</span>
-                            <p className="text-ink-400 mt-1">Active forecasters</p>
+                            <p className="text-ink-400 mt-1">Aktif tahminleyiciler</p>
                         </div>
                     </div>
                 </div>

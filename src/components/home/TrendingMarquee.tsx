@@ -121,7 +121,7 @@ export function TrendingMarquee({ initialEvents = [] }: TrendingMarqueeProps) {
         {/* Label */}
         <div className="shrink-0 px-4 h-full flex items-center gap-2 border-r border-ink-200 bg-white/60">
           <span className="w-1.5 h-1.5 bg-signal rounded-full pulse-dot" />
-          <span className="data-label text-ink-600">Live</span>
+          <span className="data-label text-ink-600">Canlı</span>
         </div>
 
         {/* Scrolling content */}
@@ -161,7 +161,7 @@ export function TrendingMarquee({ initialEvents = [] }: TrendingMarqueeProps) {
                       votingEvent === event.id && "opacity-50 cursor-wait"
                     )}
                   >
-                    YES
+                    EVET
                   </button>
                   <button
                     onClick={(e) => handleVote(event.id, false, e)}
@@ -171,7 +171,7 @@ export function TrendingMarquee({ initialEvents = [] }: TrendingMarqueeProps) {
                       votingEvent === event.id && "opacity-50 cursor-wait"
                     )}
                   >
-                    NO
+                    HAYIR
                   </button>
                 </div>
               </div>

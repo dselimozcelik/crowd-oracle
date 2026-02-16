@@ -25,10 +25,10 @@ interface HeaderProps {
 }
 
 const navItems = [
-    { href: '/markets', label: 'Markets', icon: TrendingUp },
-    { href: '/dashboard', label: 'Dashboard', icon: Home },
-    { href: '/leaderboard', label: 'Leaderboard', icon: Trophy },
-    { href: '/badges', label: 'Badges', icon: Award },
+    { href: '/markets', label: 'Piyasalar', icon: TrendingUp },
+    { href: '/dashboard', label: 'Kontrol Paneli', icon: Home },
+    { href: '/leaderboard', label: 'Liderlik Tablosu', icon: Trophy },
+    { href: '/badges', label: 'Rozetler', icon: Award },
 ];
 
 export function Header({ user, profile, stats }: HeaderProps) {
@@ -40,7 +40,7 @@ export function Header({ user, profile, stats }: HeaderProps) {
                 {/* Logo */}
                 <Link href="/" className="flex items-center gap-2">
                     <div className="w-2 h-2 bg-emerald-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.5)]" />
-                    <span className="font-display text-lg tracking-tight transition-colors text-slate-900">CrowdOracle</span>
+                    <span className="font-display text-lg tracking-tight transition-colors text-slate-900">Referandum</span>
                 </Link>
 
                 {/* Nav */}
@@ -101,7 +101,7 @@ export function Header({ user, profile, stats }: HeaderProps) {
                                     </p>
                                     {stats && (
                                         <p className="text-xs text-ink-400 data-value mt-1">
-                                            {stats.total_predictions} predictions · {stats.current_streak} streak
+                                            {stats.total_predictions} tahmin · {stats.current_streak} seri
                                         </p>
                                     )}
                                 </div>
@@ -110,13 +110,13 @@ export function Header({ user, profile, stats }: HeaderProps) {
                             <DropdownMenuItem asChild className="px-3 py-2 hover:bg-ink-50 cursor-pointer">
                                 <Link href="/profile" className="flex items-center gap-2">
                                     <User className="w-4 h-4 text-ink-400" />
-                                    <span className="text-sm">Profile</span>
+                                    <span className="text-sm">Profil</span>
                                 </Link>
                             </DropdownMenuItem>
                             <DropdownMenuItem asChild className="px-3 py-2 hover:bg-ink-50 cursor-pointer">
                                 <Link href="/badges" className="flex items-center gap-2">
                                     <Award className="w-4 h-4 text-ink-400" />
-                                    <span className="text-sm">My Badges</span>
+                                    <span className="text-sm">Rozetlerim</span>
                                 </Link>
                             </DropdownMenuItem>
                             {profile?.is_admin && (
@@ -125,7 +125,7 @@ export function Header({ user, profile, stats }: HeaderProps) {
                                     <DropdownMenuItem asChild className="px-3 py-2 hover:bg-ink-50 cursor-pointer">
                                         <Link href="/admin" className="flex items-center gap-2">
                                             <Shield className="w-4 h-4 text-amber" />
-                                            <span className="text-sm">Admin</span>
+                                            <span className="text-sm">Yönetici</span>
                                         </Link>
                                     </DropdownMenuItem>
                                 </>
@@ -139,7 +139,7 @@ export function Header({ user, profile, stats }: HeaderProps) {
                                 }}
                             >
                                 <LogOut className="w-4 h-4 text-ink-400" />
-                                <span className="text-sm">Log out</span>
+                                <span className="text-sm">Çıkış Yap</span>
                             </DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

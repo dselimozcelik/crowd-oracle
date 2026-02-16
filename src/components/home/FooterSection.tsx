@@ -38,12 +38,12 @@ export function FooterSection() {
                         viewport={viewportOnce}
                     >
                         <h2 className="text-4xl md:text-5xl font-display font-bold text-ink-950 mb-6 tracking-tight leading-tight">
-                            Ready to start<br />
-                            <span className="text-signal">predicting?</span>
+                            Başlamaya<br />
+                            <span className="text-signal">hazır mısınız?</span>
                         </h2>
 
                         <p className="text-ink-600 text-lg mb-10 max-w-lg mx-auto">
-                            Join thousands of forecasters building their track records and earning influence.
+                            Geçmişlerini oluşturan ve etki kazanan binlerce tahminleyiciye katılın.
                         </p>
 
                         {/* Animated CTA button with pulse glow */}
@@ -67,7 +67,7 @@ export function FooterSection() {
                                     href="/signup"
                                     className="group inline-flex items-center gap-2 px-8 py-4 bg-signal text-white rounded-md font-bold text-lg tracking-wide hover:brightness-110 transition-all"
                                 >
-                                    Create Free Account
+                                    Ücretsiz Hesap Oluştur
                                     <motion.span
                                         animate={shouldReduceMotion ? {} : { x: [0, 4, 0] }}
                                         transition={{ duration: 1, repeat: Infinity, ease: 'easeInOut' }}
@@ -79,7 +79,7 @@ export function FooterSection() {
                         </motion.div>
 
                         <p className="mt-6 text-xs text-ink-400 font-mono tracking-wider uppercase">
-                            No credit card required
+                            Kredi kartı gerekmez
                         </p>
                     </motion.div>
                 </div>
@@ -104,11 +104,11 @@ export function FooterSection() {
                                     transition={{ duration: 2, repeat: Infinity }}
                                 />
                                 <span className="text-xl font-display font-bold text-ink-950 tracking-tight">
-                                    CrowdOracle
+                                    Referandum
                                 </span>
                             </div>
                             <p className="text-ink-500 text-sm max-w-xs leading-relaxed">
-                                The Signal in the Noise. We aggregate collective intelligence to predict global outcomes with higher accuracy than experts.
+                                Gürültüdeki Sinyal. Küresel sonuçları uzmanlardan daha yüksek doğrulukla tahmin etmek için kolektif zekayı topluyoruz.
                             </p>
                             <div className="flex items-center gap-4 pt-4">
                                 <SocialLink href="#" icon={<XIcon className="w-4 h-4" />} />
@@ -121,36 +121,36 @@ export function FooterSection() {
                         <div className="space-y-4">
                             <h4 className="text-xs font-mono font-semibold text-ink-400 uppercase tracking-widest">Platform</h4>
                             <ul className="space-y-2 text-sm">
-                                <FooterLink href="/events">Live Markets</FooterLink>
-                                <FooterLink href="/leaderboard">Leaderboard</FooterLink>
-                                <FooterLink href="#">Create Market</FooterLink>
+                                <FooterLink href="/events">Canlı Piyasalar</FooterLink>
+                                <FooterLink href="/leaderboard">Liderlik Tablosu</FooterLink>
+                                <FooterLink href="#">Piyasa Oluştur</FooterLink>
                                 <FooterLink href="#">API</FooterLink>
                             </ul>
                         </div>
 
                         <div className="space-y-4">
-                            <h4 className="text-xs font-mono font-semibold text-ink-400 uppercase tracking-widest">Company</h4>
+                            <h4 className="text-xs font-mono font-semibold text-ink-400 uppercase tracking-widest">Şirket</h4>
                             <ul className="space-y-2 text-sm">
-                                <FooterLink href="#">About Us</FooterLink>
-                                <FooterLink href="#">Methodology</FooterLink>
-                                <FooterLink href="#">Terms of Service</FooterLink>
-                                <FooterLink href="#">Privacy Policy</FooterLink>
+                                <FooterLink href="#">Hakkımızda</FooterLink>
+                                <FooterLink href="#">Metodoloji</FooterLink>
+                                <FooterLink href="#">Hizmet Koşulları</FooterLink>
+                                <FooterLink href="#">Gizlilik Politikası</FooterLink>
                             </ul>
                         </div>
                     </div>
 
                     {/* Bottom Row */}
                     <div className="pt-8 border-t border-ink-200 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-ink-400 font-mono">
-                        <p>© 2026 CrowdOracle Inc. All rights reserved.</p>
+                        <p>© 2026 Referandum Inc. Tüm hakları saklıdır.</p>
                         <div className="flex gap-8">
-                            <span>Istanbul, Turkey</span>
+                            <span>İstanbul, Türkiye</span>
                             <span className="flex items-center gap-2">
                                 <motion.span
                                     className="w-2 h-2 rounded-full bg-signal"
                                     animate={shouldReduceMotion ? {} : { opacity: [1, 0.4, 1] }}
                                     transition={{ duration: 2, repeat: Infinity }}
                                 />
-                                Systems Normal
+                                Sistemler Normal
                             </span>
                         </div>
                     </div>

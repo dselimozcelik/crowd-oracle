@@ -108,7 +108,7 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                 </span>
                 <span className="text-xs font-mono text-signal flex items-center gap-1.5 font-medium">
                     <Activity className="w-3.5 h-3.5" />
-                    {displayVotes.toLocaleString()} Votes
+                    {displayVotes.toLocaleString()} Oy
                 </span>
             </div>
 
@@ -123,7 +123,7 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                     <div className="absolute inset-0 z-30 flex items-center justify-center bg-white/60 backdrop-blur-[2px]">
                         <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-ink-200 text-xs font-medium text-ink-600 shadow-sm">
                             <Lock className="w-3 h-3 text-signal" />
-                            <span>Sign in to view</span>
+                            <span>Görüntülemek için giriş yapın</span>
                         </div>
                     </div>
                 )}
@@ -133,7 +133,7 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                     <div className="absolute top-0 left-0 right-0 z-20 h-[30px] flex items-center justify-center pointer-events-none">
                         <div className="flex items-center gap-2 text-xs font-medium text-ink-400">
                             <EyeOff className="w-3 h-3" />
-                            <span>Vote to reveal</span>
+                            <span>Görmek için oy verin</span>
                         </div>
                     </div>
                 )}
@@ -143,8 +143,8 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                     <div className="space-y-2 relative">
                         {/* Labels */}
                         <div className={cn("flex justify-between text-xs font-mono font-medium transition-opacity duration-300", !hasVoted ? "opacity-0" : "opacity-100")}>
-                            <span className="text-yes">YES {yesPct}%</span>
-                            <span className="text-no">NO {100 - yesPct}%</span>
+                            <span className="text-yes">EVET {yesPct}%</span>
+                            <span className="text-no">HAYIR {100 - yesPct}%</span>
                         </div>
 
                         {/* Bar */}
@@ -181,7 +181,7 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                         >
                             <span className="relative z-10 flex items-center justify-center gap-1.5">
                                 {hasVoted && userVote === 'YES' && <Check className="w-3.5 h-3.5" />}
-                                YES
+                                EVET
                             </span>
                             {/* Shimmer Effect (only if interactive) */}
                             {!hasVoted && <div className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />}
@@ -202,7 +202,7 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                         >
                             <span className="relative z-10 flex items-center justify-center gap-1.5">
                                 {hasVoted && userVote === 'NO' && <Check className="w-3.5 h-3.5" />}
-                                NO
+                                HAYIR
                             </span>
                         </button>
                     </div>
@@ -229,10 +229,10 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                         >
                             <div className="space-y-2">
                                 <h4 className="text-xl font-display font-bold text-ink-900 leading-tight">
-                                    Woah! You're on a roll! 🔥
+                                    Vay canına! Harikasınız! 🔥
                                 </h4>
                                 <p className="text-xs text-ink-600 leading-relaxed px-2">
-                                    You've used your 3 free guest votes. Don't lose your streak—create a free account to keep predicting.
+                                    3 ücretsiz misafir oyunuzu kullandınız. Serinizi kaybetmeyin—tahmin yapmaya devam etmek için ücretsiz hesap oluşturun.
                                 </p>
                             </div>
 
@@ -241,13 +241,13 @@ export function LiveEventCard({ id, title, voteCount, yesPct, category, isGuest 
                                     onClick={() => console.log('Navigate to signup')}
                                     className="w-full py-2.5 rounded-lg bg-signal hover:brightness-110 text-white text-xs font-bold font-mono tracking-wide transition-all shadow-[0_0_15px_rgba(0,210,106,0.3)]"
                                 >
-                                    Unlock Unlimited Voting
+                                    Sınırsız Oy Kullanımının Kilidini Açın
                                 </button>
                                 <button
                                     onClick={() => setShowLimitModal(false)}
                                     className="w-full py-2 rounded-lg text-ink-500 hover:text-ink-900 text-xs font-medium transition-colors"
                                 >
-                                    Cancel
+                                    İptal
                                 </button>
                             </div>
                         </motion.div>

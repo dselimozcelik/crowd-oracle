@@ -16,8 +16,8 @@ const geist = Geist({
 });
 
 export const metadata: Metadata = {
-  title: "CrowdOracle",
-  description: "Prediction markets powered by collective intelligence",
+  title: "Referandum",
+  description: "Kolektif zeka ile çalışan tahmin piyasaları",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="tr">
       <body className={`${inter.variable} ${geist.variable} font-sans antialiased`}>
         {children}
         <Toaster position="bottom-right" />

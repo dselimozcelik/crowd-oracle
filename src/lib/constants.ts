@@ -1,20 +1,20 @@
-// Constants for CrowdOracle
+// Referandum için sabitler
 
-export const SITE_NAME = 'CrowdOracle';
-export const SITE_DESCRIPTION = 'Predict the future with the wisdom of crowds';
+export const SITE_NAME = 'Referandum';
+export const SITE_DESCRIPTION = 'Kalabalığın bilgeliğiyle geleceği tahmin edin';
 
 export const TRUST_SCORE_TIERS = {
-    newcomer: { min: 0, max: 0.55, label: 'Newcomer', color: 'slate' },
-    regular: { min: 0.55, max: 0.65, label: 'Regular', color: 'blue' },
-    reliable: { min: 0.65, max: 0.75, label: 'Reliable', color: 'green' },
-    expert: { min: 0.75, max: 0.85, label: 'Expert', color: 'purple' },
-    superforecaster: { min: 0.85, max: 1.0, label: 'Superforecaster', color: 'amber' },
+    newcomer: { min: 0, max: 0.55, label: 'Yeni', color: 'slate' },
+    regular: { min: 0.55, max: 0.65, label: 'Normal', color: 'blue' },
+    reliable: { min: 0.65, max: 0.75, label: 'Güvenilir', color: 'green' },
+    expert: { min: 0.75, max: 0.85, label: 'Uzman', color: 'purple' },
+    superforecaster: { min: 0.85, max: 1.0, label: 'Süperkahin', color: 'amber' },
 } as const;
 
 export const CONFIDENCE_LEVELS = [
-    { value: 'low', label: 'Low', description: 'Just a guess' },
-    { value: 'medium', label: 'Medium', description: 'Fairly confident' },
-    { value: 'high', label: 'High', description: 'Very confident' },
+    { value: 'low', label: 'Düşük', description: 'Sadece bir tahmin' },
+    { value: 'medium', label: 'Orta', description: 'Oldukça eminim' },
+    { value: 'high', label: 'Yüksek', description: 'Çok eminim' },
 ] as const;
 
 export const AGE_RANGES = [
@@ -27,31 +27,31 @@ export const AGE_RANGES = [
 ] as const;
 
 export const JOB_SECTORS = [
-    { value: 'technology', label: 'Technology' },
-    { value: 'finance', label: 'Finance' },
-    { value: 'healthcare', label: 'Healthcare' },
-    { value: 'education', label: 'Education' },
-    { value: 'retail', label: 'Retail' },
-    { value: 'manufacturing', label: 'Manufacturing' },
-    { value: 'government', label: 'Government' },
-    { value: 'media', label: 'Media & Entertainment' },
-    { value: 'legal', label: 'Legal' },
-    { value: 'consulting', label: 'Consulting' },
-    { value: 'real_estate', label: 'Real Estate' },
-    { value: 'energy', label: 'Energy' },
-    { value: 'agriculture', label: 'Agriculture' },
-    { value: 'transportation', label: 'Transportation' },
-    { value: 'hospitality', label: 'Hospitality' },
-    { value: 'other', label: 'Other' },
+    { value: 'technology', label: 'Teknoloji' },
+    { value: 'finance', label: 'Finans' },
+    { value: 'healthcare', label: 'Sağlık' },
+    { value: 'education', label: 'Eğitim' },
+    { value: 'retail', label: 'Perakende' },
+    { value: 'manufacturing', label: 'İmalat' },
+    { value: 'government', label: 'Kamu' },
+    { value: 'media', label: 'Medya & Eğlence' },
+    { value: 'legal', label: 'Hukuk' },
+    { value: 'consulting', label: 'Danışmanlık' },
+    { value: 'real_estate', label: 'Gayrimenkul' },
+    { value: 'energy', label: 'Enerji' },
+    { value: 'agriculture', label: 'Tarım' },
+    { value: 'transportation', label: 'Ulaşım' },
+    { value: 'hospitality', label: 'Konaklama' },
+    { value: 'other', label: 'Diğer' },
 ] as const;
 
 export const EDUCATION_LEVELS = [
-    { value: 'high_school', label: 'High School' },
-    { value: 'some_college', label: 'Some College' },
-    { value: 'bachelors', label: "Bachelor's Degree" },
-    { value: 'masters', label: "Master's Degree" },
-    { value: 'phd', label: 'PhD/Doctorate' },
-    { value: 'other', label: 'Other' },
+    { value: 'high_school', label: 'Lise' },
+    { value: 'some_college', label: 'Üniversite (Tamamlanmamış)' },
+    { value: 'bachelors', label: 'Lisans' },
+    { value: 'masters', label: 'Yüksek Lisans' },
+    { value: 'phd', label: 'Doktora' },
+    { value: 'other', label: 'Diğer' },
 ] as const;
 
 // Rate limiting

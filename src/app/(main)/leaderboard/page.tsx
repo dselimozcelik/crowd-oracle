@@ -25,9 +25,9 @@ const LIST_TRADERS = Array.from({ length: 25 }).map((_, i) => ({
 }));
 
 const TIME_FRAMES = [
-    { key: 'weekly', label: 'Weekly' },
-    { key: 'monthly', label: 'Monthly' },
-    { key: 'all', label: 'All Time' },
+    { key: 'weekly', label: 'Haftalık' },
+    { key: 'monthly', label: 'Aylık' },
+    { key: 'all', label: 'Tüm Zamanlar' },
 ] as const;
 
 export default function LeaderboardPage() {
@@ -47,10 +47,10 @@ export default function LeaderboardPage() {
                 animate="visible"
             >
                 <h1 className="text-4xl md:text-5xl font-display font-bold text-ink-900 tracking-tight mb-4">
-                    Hall of Fame
+                    Şöhret Galerisi
                 </h1>
                 <p className="text-ink-500 text-lg mb-10 max-w-2xl mx-auto">
-                    Top anonymous oracles ranked by <span className="text-signal font-semibold">Performance</span> and <span className="text-signal font-semibold">Consistency</span>.
+                    <span className="text-signal font-semibold">Performans</span> ve <span className="text-signal font-semibold">Tutarlılık</span> ile sıralanan en iyi anonim kahinler.
                 </p>
 
                 {/* TIME FILTER TABS */}
@@ -94,7 +94,7 @@ export default function LeaderboardPage() {
                     <div className="flex items-center gap-3 mb-6 px-2">
                         <div className="h-px bg-ink-200 flex-1"></div>
                         <span className="text-ink-400 font-mono text-xs uppercase tracking-widest font-semibold">
-                            Global Rankings
+                            Küresel Sıralamalar
                         </span>
                         <div className="h-px bg-ink-200 flex-1"></div>
                     </div>

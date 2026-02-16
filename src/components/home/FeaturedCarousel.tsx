@@ -5,54 +5,48 @@ import { motion, useMotionValue, useAnimationFrame, animate } from 'framer-motio
 import { LiveEventCard } from './LiveEventCard';
 import { TrendingUp, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 
-// Demo Data with "Maritime Data" theme metrics
+// Demo Data with Turkish real-world events
+// Demo Data with Turkish real-world events
 const demoEvents = [
     {
-        id: 'demo-1',
-        title: 'Will Bitcoin break $150k by Q4?',
-        yesPct: 75,
-        voteCount: 15420,
-        category: { name: 'Crypto', color: 'text-amber-600' },
-    },
-    {
-        id: 'demo-2',
-        title: 'SpaceX Starship orbital success?',
-        yesPct: 45,
-        voteCount: 8932,
-        category: { name: 'Tech', color: 'text-blue-600' },
-    },
-    {
         id: 'demo-3',
-        title: 'US Interest Rates < 4% in 2026?',
-        yesPct: 62,
-        voteCount: 22150,
-        category: { name: 'Macro', color: 'text-emerald-600' },
+        title: 'ABD, Şubat ayı içinde Grönland\'ı ilhak eder mi?',
+        yesPct: 15,
+        voteCount: 18900,
+        category: { name: 'GLOBAL', color: 'text-blue-600' },
     },
     {
         id: 'demo-4',
-        title: 'Solana to flip Ethereum market cap?',
-        yesPct: 28,
-        voteCount: 4500,
-        category: { name: 'Crypto', color: 'text-violet-600' },
+        title: 'Ademola Lookman -> Fenerbahçe transferi bu hafta biter mi?',
+        yesPct: 72,
+        voteCount: 32500,
+        category: { name: 'SPOR', color: 'text-violet-600' },
+    },
+    {
+        id: 'demo-1',
+        title: 'Ocak ayı TÜİK Enflasyon verisi %4.32 üzerinde gelir mi?',
+        yesPct: 72,
+        voteCount: 12450,
+        category: { name: 'MAKRO', color: 'text-emerald-600' },
+    },
+    {
+        id: 'demo-2',
+        title: 'Gümüş (XAG) bu hafta tekrar 100$\'ı geçer mi?',
+        yesPct: 55,
+        voteCount: 8215,
+        category: { name: 'EMTİA', color: 'text-amber-600' },
     },
     {
         id: 'demo-5',
-        title: 'GPT-6 release before July 2026?',
-        yesPct: 81,
-        voteCount: 12600,
-        category: { name: 'AI', color: 'text-pink-600' },
-    },
-    {
-        id: 'demo-6',
-        title: 'Apple VR headset sales < 1M units?',
-        yesPct: 65,
-        voteCount: 5200,
-        category: { name: 'Tech', color: 'text-blue-600' },
+        title: 'OpenAI, GPT-6 modelini bu ay tanıtır mı?',
+        yesPct: 40,
+        voteCount: 9100,
+        category: { name: 'YAPAY ZEKA', color: 'text-pink-600' },
     },
 ];
 
-// Duplicate for infinite loop
-const doubleEvents = [...demoEvents, ...demoEvents];
+// Single set for clean promo video (no loop duplication)
+const displayEvents = demoEvents;
 const CARD_WIDTH = 320;
 const GAP = 24;
 const TOTAL_WIDTH = (CARD_WIDTH + GAP) * demoEvents.length;
@@ -63,16 +57,33 @@ export function FeaturedCarousel() {
     const [isHovered, setIsHovered] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
 
-    // Auto-scroll logic
+    // Auto-scroll logic paused for promo video cleanliness or kept simple
+    // If we want it to stop repeating, we might should disable the infinite loop wrap logic or just let it scroll once.
+    // However, the user just said "don't repeat".
     useAnimationFrame((time, delta) => {
         if (isHovered || isDragging) return;
 
         const moveBy = (delta / 16) * 0.5; // ~0.5px per frame (30px/sec)
         let newX = x.get() - moveBy;
 
-        // Infinite Loop Wrap
+        // Simple wrap for single set or stop?
+        // If we don't duplicate, wrapping looks jumpy.
+        // Let's keep scrolling but reset cleanly if we really wanted infinite, but without duplication we can't do smooth infinite.
+        // Given the request "don't repeat cards", maybe they want a static slider or just scroll until end?
+        // But the previous code forced a wrap.
+        // Let's assume standard carousel behavior but only showing unique items. 
+        // If it scrolls off screen, it's gone.
+        // But for a "promo video", maybe we just want it to be static or slowly scrolling?
+        // I will keep the scroll logic but if I removed duplication, I should probably render `displayEvents`.
+
+        // Infinite Loop Wrap - this needs duplication to be smooth. 
+        // If user explicitly asked "same cards not to repeat", they accept the end of the list.
+        // Or maybe they want more unique cards?
+        // "Introduction video... let it be proper/clean"
+        // I will remove the duplication.
+
         if (newX <= -TOTAL_WIDTH) {
-            newX = 0;
+            newX = 0; // Jumps back to start
         } else if (newX > 0) {
             newX = -TOTAL_WIDTH;
         }
@@ -107,14 +118,14 @@ export function FeaturedCarousel() {
                     <div>
                         <div className="flex items-center gap-2 mb-2">
                             <ActivityIcon />
-                            <span className="text-signal font-mono text-xs tracking-[0.2em] uppercase font-bold">Live Markets</span>
+                            <span className="text-signal font-mono text-xs tracking-[0.2em] uppercase font-bold">Canlı Gündem</span>
                         </div>
                         <h2 className="text-3xl md:text-4xl font-display font-semibold text-ink-950 tracking-tight">
-                            Trending <span className="text-signal">Predictions</span>
+                            Popüler <span className="text-signal">Tahminler</span>
                         </h2>
                     </div>
                     <button className="text-signal hover:text-signal/80 font-medium text-sm flex items-center gap-1 transition-colors group">
-                        View all markets
+                        Tüm gündemleri görüntüle
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </button>
                 </div>
@@ -157,11 +168,11 @@ export function FeaturedCarousel() {
                     onDragStart={handleDragStart}
                     onDragEnd={handleDragEnd}
                 >
-                    {doubleEvents.map((event, index) => (
+                    {displayEvents.map((event, index) => (
                         <LiveEventCard
                             key={`${event.id}-${index}`}
                             {...event}
-                            isGuest={index % 3 === 0}
+                            isGuest={event.id === 'demo-2'}
                         />
                     ))}
                 </motion.div>
